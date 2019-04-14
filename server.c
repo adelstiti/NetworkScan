@@ -14,9 +14,8 @@
 
 // Fonction scanner les ports
 	void scanPort(char hostname[30] , int start, int end ){
-		int   soport,sokpo;
+		int   sokpo,soport;
 	    	struct sockaddr_in serv_addr;
-		int portno  = 631;
 		struct hostent *server;
 
 		sokpo = socket(AF_INET, SOCK_STREAM, 0);
@@ -34,11 +33,9 @@
 			serv_addr.sin_port = htons(j);
 			soport = connect(sokpo,(struct sockaddr *) &serv_addr,sizeof(serv_addr));
 		    	if (soport >= 0) {
-				printf("--> Port %d ouvert  ",j); } 
-		    		    		
-			}
-
-		printf(" \n");
+				printf("--> Port %d ouvert  ",j); }	    		
+		}
+		printf("\n");
 		close(sokpo);
 	}
 
