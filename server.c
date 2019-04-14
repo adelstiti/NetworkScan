@@ -42,7 +42,6 @@
 
 
 // Fonction Afficher Les adresses IPv4 des Clients
-
 	void showIp(char tab[2][20]){
 		printf("Les adresses IPv4 Disponibles : \n");
 		int i;
@@ -55,7 +54,7 @@ void affiche(){
 	printf("Accepte le client...\n"); ;
 }
 
-// Main function 
+// Fonction Main 
 int main() 
 { 
     	int sockfd, connfd, len,start , end;
@@ -64,7 +63,7 @@ int main()
     	char hostname[20] ;
 
 
-    // socket create and verification 
+    // Création et vérification de socket
     sockfd = socket(AF_INET, SOCK_STREAM, 0); 
     if (sockfd == -1) { 
         printf("La création de socket a échoué...\n"); 
@@ -74,12 +73,12 @@ int main()
         printf("Socket créé avec succès..\n"); 
     bzero(&servaddr, sizeof(servaddr)); 
   
-    // assign IP, PORT 
+    // attribuer IP, PORT 
     servaddr.sin_family = AF_INET; 
     servaddr.sin_addr.s_addr = htonl(INADDR_ANY); 
     servaddr.sin_port = htons(PORT); 
   
-    // Binding newly created socket to given IP and verification 
+    // Liaison de socket 
     if ((bind(sockfd, (SA*)&servaddr, sizeof(servaddr))) != 0) { 
         printf("La liaison de socket a échoué...\n"); 
         exit(0); 
