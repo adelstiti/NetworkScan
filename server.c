@@ -20,10 +20,8 @@
 
 		sokpo = socket(AF_INET, SOCK_STREAM, 0);
 		server = gethostbyname(hostname);
-
 		bzero((char *) &serv_addr, sizeof(serv_addr));
 		serv_addr.sin_family = AF_INET;
-		bcopy((char *)server->h_addr,(char *)&serv_addr.sin_addr.s_addr,server->h_length);
 
 		if (server == NULL) {
 			fprintf(stderr,"Erreur, pas d'hôte\n");
@@ -42,10 +40,10 @@
 
 
 // Fonction Afficher Les adresses IPv4 des Clients
-	void showIp(char tab[2][20]){
+	void showIp(char tab[3][20]){
 		printf("Les adresses IPv4 Disponibles : \n");
 		int i;
-	   	for(i=1;i<3;i++){
+	   	for(i=1;i<4;i++){
 			printf("%d/ IP : %s \n",i,tab[i]);
 		}
 	}
@@ -59,7 +57,7 @@ int main()
 { 
     	int sockfd, connfd, len,start , end;
     	struct sockaddr_in servaddr;
-	char ips[2][20];
+	char ips[3][20];
     	char hostname[20] ;
 
 
@@ -88,7 +86,7 @@ int main()
   
     // Ecoute et vérification 
 
-    if ((listen(sockfd, 5)) != 0) { 
+    if ((listen(sockfd, 3)) != 0) { 
         printf("Écoute a échoué...\n"); 
         exit(0); 
     } 
@@ -99,7 +97,7 @@ int main()
     // Accepter le paquet de données du client et vérification
 	len = sizeof(servaddr);
 	pthread_t id;
-	 for(int i=1;i<3;i++){
+	 for(int i=1;i<4;i++){
 	    connfd = accept(sockfd, (SA*)&servaddr,&len ); 
 	    if (connfd < 0) { 
 		printf("Acceptation du serveur a échoué...\n"); 
